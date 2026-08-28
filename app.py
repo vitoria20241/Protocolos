@@ -16,8 +16,13 @@ LOGO = ASSETS_DIR / "logo.png"
 LOGO1 = ASSETS_DIR / "logo1.png"
 
 
+# ============================================================
+# CARREGAMENTO DOS DADOS
+# ============================================================
+
 if "df" not in st.session_state:
     df = pd.read_excel(CAMINHO_PLANILHA,
+                       sheet_name="Protocolos", 
                        dtype = {"Nº Protocolo": str})  
     df = atualizar_protocolo(df)
     df = atualizar_status(df) 
@@ -28,7 +33,25 @@ if "df" not in st.session_state:
     df_setores = criar_base_setores(df)
     st.session_state.df_setores = df_setores
     
-    
+
+# ============================================================
+# ABA EVENTOS
+# ============================================================
+
+if "df_eventos" not in st.session_state:
+
+    df_eventos = pd.read_excel(
+        CAMINHO_PLANILHA,
+        sheet_name="Eventos"
+    )
+
+    st.session_state.df_eventos = df_eventos
+
+
+# ============================================================
+# CONFIGURAÇÃO DA PÁGINA
+# ============================================================
+   
 st.set_page_config(
     page_title="Protocolos",
     page_icon=str(LOGO), 
@@ -37,9 +60,15 @@ st.set_page_config(
 
 st.sidebar.image(str(LOGO1), width=70) 
 
+
+# ============================================================
+# NAVEGAÇÃO
+# ============================================================
+
 pg = st.navigation([
     st.Page("pages/0_Inicio.py", title="⌂ Início"),
     st.Page("pages/1_Consulta.py", title="◫ Consulta"),
+    st.Page("pages/2_Eventos.py", title="◷ Eventos"),
 ])
 
 pg.run() 
