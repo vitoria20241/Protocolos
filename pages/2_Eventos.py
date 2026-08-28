@@ -21,22 +21,16 @@ st.set_page_config(
 st.markdown("### Eventos")
 
 
-# ============================================================
-# CARREGAR DADOS
-# ============================================================
-
 df_eventos = st.session_state.df_eventos.copy()
 
-
-# ============================================================
-# FORMATAR DATA
-# ============================================================
-
-df_eventos["Data"] = pd.to_datetime(
-    df_eventos["Data"],
-    errors="coerce"
-).dt.strftime("%d/%m/%Y")
-
+# Formatar datas 
+for coluna in ["Data inscrição", "Data do evento"]:
+    if coluna in df_eventos.columns:
+        df_eventos[coluna] = pd.to_datetime(
+            df_eventos[coluna],
+            dayfirst=True,
+            errors="coerce"
+        ).dt.strftime("%d/%m/%Y")
 
 # ============================================================
 # FILTROS 
