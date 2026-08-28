@@ -58,13 +58,9 @@ with col1:
     placeholder="Selecione um ou mais participantes"
 )
 
-
-
 df_filtrado = df_eventos.copy()
 
-
 if filtro_participantes:
-
     df_filtrado = df_filtrado[
         df_filtrado["Participantes"]
         .fillna("")
