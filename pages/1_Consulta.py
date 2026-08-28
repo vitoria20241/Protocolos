@@ -10,15 +10,13 @@ CAMINHO_PLANILHA = DADOS_DIR / "50_Controle_de_Protocolos_2026.xlsx"
 
 df = st.session_state.df.copy()
 # Formatação das datas 
-for coluna in ["Data Real Resp", "Data Prev Resp"]:
+for coluna in ["Data Entrada", "Data Real Resp", "Data Prev Resp"]:
     if coluna in df.columns:
         df[coluna] = pd.to_datetime(
             df[coluna],
             dayfirst=True,
             errors="coerce"
-        ) 
-#st.write(df_exibir[["Data Entrada", "Data Real Resp ", "Data Prev Resp"]].dtypes)
-
+        ).dt.strftime("%d/%m/%Y") 
 
 # ======================
 # VALORES ATUAIS DOS FILTROS
@@ -153,17 +151,6 @@ st.write(
 st.dataframe(
     aplicar_cores(df_filtrado),
     width="stretch", 
-    column_config={
-        "Data Entrada": st.column_config.DateColumn(
-            format="DD/MM/YYYY"
-        ),
-        "Data Real Resp": st.column_config.DateColumn(
-            format="DD/MM/YYYY"
-        ),
-        "Data Prev Resp": st.column_config.DateColumn(
-            format="DD/MM/YYYY"
-        ),
-    },
     hide_index=True 
 ) 
 
