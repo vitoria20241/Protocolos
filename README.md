@@ -34,4 +34,4 @@ Devido à natureza sensível dos dados processados, a aplicação foi projetada 
 <img width="85%" alt="Protocolos_3" src="https://github.com/user-attachments/assets/8d880f24-b695-4863-a828-1e0d3f62578e" /> 
 
 ---
-*Desenvolvido por [Vitória Borges Bulhões](www.linkedin.com/in/vitoria-bulhoes)* 
+*Desenvolvido por [Vitória Borges Bulhões](https://linkedin.com/in/vitoria-bulhoes)* 
